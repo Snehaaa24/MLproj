@@ -1,0 +1,25 @@
+from setuptools import find_packages,setup
+from typing import List
+
+hyphenEdot='-e .'
+def get_requirements(file_path:str)->list[str]:
+    '''
+    this function will return the list of requirements
+    '''
+    requirements=[]
+    with open(file_path) as file_obj:
+        requirements=file_obj.readlines()
+        requirements=[req.replace("\n","") for req in requirements]
+
+        if hyphenEdot in requirements:
+            requirements.remove(hyphenEdot)
+    return requirements
+
+setup(
+    name='mlproj',
+    version='0.0.1',
+    author='Sneha',
+    author_email='snehaohfour@gmail.com',
+    packages=find_packages(),
+    install_requires=get_requirements('requirements.txt')
+)
