@@ -6,6 +6,8 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split #bcoz in order to ingest data you have to split it
 from dataclasses import dataclass
+from src.components.data_transformation import DataTransformationConfig
+from src.components.data_transformation import DataTransformation
 
 class DataIngestionConfig:
     train_data_path=os.path.join('artifacts',"train.csv")
@@ -43,4 +45,8 @@ class DataIngestion:
         
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_injestion()
+    train_data,test_data=obj.initiate_data_injestion()
+
+    data_transformation=DataTransformation()
+    data_transformation.initiate_dataTransformation(train_data,test_data)
+
