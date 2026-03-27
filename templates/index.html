@@ -1,1 +1,278 @@
-<h1>Welcome to the home page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScoreScope — Student Performance Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:   #0f0e0c;
+      --paper: #f5f0e8;
+      --cream: #ede6d6;
+      --gold:  #c9a84c;
+      --rust:  #b84c2a;
+      --smoke: #8a8478;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 999; opacity: 0.4;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.6rem 3rem;
+      border-bottom: 1px solid rgba(15,14,12,0.12);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900;
+      letter-spacing: -0.02em; color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    nav a.cta {
+      background: var(--ink); color: var(--paper);
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    nav a.cta:hover { background: var(--rust); transform: translateY(-1px); }
+
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 73px);
+    }
+    .hero-left {
+      padding: 6rem 4rem 6rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid rgba(15,14,12,0.1);
+      animation: fadeUp 0.9s ease both;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--cream); border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); padding: 0.3rem 0.9rem;
+      border-radius: 2px; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 2rem; width: fit-content;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -0.03em; margin-bottom: 1.6rem;
+    }
+    h1 em { color: var(--rust); font-style: normal; }
+    .hero-desc {
+      font-size: 1.05rem; line-height: 1.75;
+      color: var(--smoke); max-width: 38ch;
+      margin-bottom: 2.8rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--ink); color: var(--paper);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--rust); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(184,76,42,0.25);
+    }
+    .btn-ghost {
+      display: inline-block; color: var(--smoke);
+      text-decoration: none; font-size: 0.9rem;
+      border-bottom: 1px solid currentColor; padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--ink); }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: var(--cream);
+      animation: fadeIn 1.1s ease both 0.2s;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 30%, rgba(201,168,76,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(184,76,42,0.1) 0%, transparent 60%);
+    }
+    .stat-grid {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 4rem 3rem; gap: 2rem;
+    }
+    .stat-card {
+      background: rgba(245,240,232,0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(15,14,12,0.08);
+      padding: 1.5rem 2rem; border-radius: 4px;
+      max-width: 300px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .stat-card:hover { transform: translateX(-6px); box-shadow: 6px 6px 0 var(--gold); }
+    .stat-card:nth-child(2) { margin-left: 2rem; }
+    .stat-card:nth-child(3) { margin-left: 4rem; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 900;
+      color: var(--ink); line-height: 1; margin-bottom: 0.3rem;
+    }
+    .stat-num sup { font-size: 1.2rem; color: var(--gold); }
+    .stat-label { font-size: 0.82rem; color: var(--smoke); letter-spacing: 0.05em; }
+
+    .section {
+      padding: 6rem 3rem;
+      border-top: 1px solid rgba(15,14,12,0.1);
+    }
+    .section-tag {
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.8rem; font-weight: 500;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 3.5rem; max-width: 20ch;
+    }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .step {
+      padding: 2.5rem 2rem;
+      background: var(--cream);
+      border: 1px solid rgba(15,14,12,0.06);
+      transition: background 0.25s; position: relative;
+    }
+    .step:hover { background: var(--ink); }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900;
+      color: rgba(15,14,12,0.1); line-height: 1;
+      margin-bottom: 1rem; transition: color 0.25s;
+    }
+    .step:hover .step-num { color: var(--gold); }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 0.7rem; transition: color 0.25s;
+    }
+    .step:hover .step-title { color: var(--paper); }
+    .step-desc { font-size: 0.9rem; line-height: 1.65; color: var(--smoke); transition: color 0.25s; }
+    .step:hover .step-desc { color: rgba(245,240,232,0.65); }
+
+    footer {
+      padding: 2.5rem 3rem;
+      border-top: 1px solid rgba(15,14,12,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem; color: var(--smoke);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 360px; }
+      .steps { grid-template-columns: 1fr; }
+      nav, .hero-left, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Score<span>Scope</span></a>
+    <a href="/predictdata" class="cta">Predict Now →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">✦ ML-Powered Prediction</div>
+      <h1>Forecast<br/>Student <em>Math</em><br/>Performance</h1>
+      <p class="hero-desc">
+        Enter a student's background and test preparation details to
+        instantly predict their mathematics score using a trained machine learning model.
+      </p>
+      <div class="hero-actions">
+        <a href="/predictdata" class="btn-primary">Start Prediction</a>
+        <a href="#how" class="btn-ghost">See how it works</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Input features analysed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">0–100</div>
+          <div class="stat-label">Predicted score range</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">&lt;1s</div>
+          <div class="stat-label">Instant prediction time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <p class="section-tag">Process</p>
+    <h2 class="section-title">Three steps to a prediction</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Enter Student Details</div>
+        <p class="step-desc">Provide demographic information, parental education level, and lunch type.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Add Test Scores</div>
+        <p class="step-desc">Input the student's reading and writing scores alongside their test-prep status.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Receive Prediction</div>
+        <p class="step-desc">The model processes the data and returns the predicted maths score instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ScoreScope — Student Performance Predictor</span>
+    <span>Powered by Machine Learning</span>
+  </footer>
+
+</body>
+</html>

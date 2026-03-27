@@ -23,10 +23,10 @@ class DataIngestionConfig:
 class DataIngestion:
     def __init__(self):
         self.injestion_config=DataIngestionConfig()
-    def initiate_data_injestion(self):
+    def initiate_data_ingestion(self):
         logging.info("Data injestion has been initiated.")
         try:
-            df=pd.read_csv('notebook\data\stud.csv')
+            df=pd.read_csv('notebook/data/stud.csv')
             logging.info("The stud.csv file is being read as df ")
 
             #creates the folder 'artifacts'
@@ -51,7 +51,7 @@ class DataIngestion:
         
 if __name__=="__main__":
     obj=DataIngestion()
-    train_data,test_data=obj.initiate_data_injestion()
+    train_data,test_data=obj.initiate_data_ingestion()
 
     data_transformation=DataTransformation()
     train_arr,test_arr,preprocessor_path=data_transformation.initiate_dataTransformation(train_data,test_data)
