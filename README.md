@@ -1,19 +1,22 @@
-End-to-End Automated ML Workflow
+🚀 End-to-End Automated ML Workflow
 Project Overview:-
-This project builds a fully automated machine learning workflow for data ingestion, transformation, model training, evaluation, and deployment. Designed with scalability in mind, it integrates GitHub Actions for CI/CD and is structured for cloud deployment using Render. Robust logging and exception handling ensure seamless execution across all stages.
+This project builds a fully automated machine learning workflow to predict student performance based on various demographic and academic inputs. It covers the complete pipeline from data ingestion and preprocessing to model training, evaluation, and deployment. The system is designed with a modular architecture, incorporating multiple regression models with automated selection of the best-performing model. The application is deployed on Render using a Flask-based web interface, with robust logging and exception handling for reliable execution.
 
 Key Features:-
-✅ Automated Data Ingestion & Preprocessing
-✅ Exploratory Data Analysis (EDA) for Insights
-✅ Model Training, Evaluation & Performance Tracking
-✅ Exception Handling & Logging for Robust Execution
-✅ CI/CD with GitHub Actions for Seamless Integration
-✅ Scalable for Cloud Deployment (AWS Planned)
+
+✅ Automated Data Ingestion & Preprocessing Pipeline
+✅ Multi-Model Training (Linear, Random Forest, XGBoost, CatBoost, etc.)
+✅ Automatic Best Model Selection using R² Score
+✅ Real-time Prediction via Flask Web Application
+✅ Structured Logging & Custom Exception Handling
+✅ Modular & Scalable Project Architecture
+✅ Cloud Deployment on Render (AWS-compatible design)
 
 Tech Stack used:-
-Python (Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn)
-Machine Learning (Supervised/Unsupervised models, Feature Engineering)
-Deep Learning (PyTorch/TensorFlow)
-GitHub Actions (CI/CD Pipeline Automation)
-AWS (Future Deployment) architecture compatibility
 
+Python
+Machine Learning
+XGBoost & CatBoost
+Flask (Backend + Web Interface for Predictions)
+Git & GitHub
+Cloud Deployment on Render (Production Hosting)
