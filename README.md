@@ -3,6 +3,8 @@ Project Overview:-
 This project builds a fully automated machine learning workflow to predict student performance based on various demographic and academic inputs. It covers the complete pipeline from data ingestion and preprocessing to model training, evaluation, and deployment. The system is designed with a modular architecture, incorporating multiple regression models with automated selection of the best-performing model. The application is deployed on Render using a Flask-based web interface, with robust logging and exception handling for reliable execution.
 
 # Project Live Link: https://mlproj-w0fr.onrender.com
+DEMO VIDEO 
+[website demo.webm](https://github.com/user-attachments/assets/016473bd-a5bd-4273-b49e-6d3fdfbde216)
 
 Key Features:-
 ✅ Automated Data Ingestion & Preprocessing Pipeline
